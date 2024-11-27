@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('comments', {
+  return sequelize.define('teams', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,

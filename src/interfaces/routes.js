@@ -3,6 +3,7 @@ const router = express.Router();
 
 const UserHandler = require('src/interfaces/http/Users');
 const ProjectHandler = require('src/interfaces/http/Projects');
+const TeamHandler = require('src/interfaces/http/Teams');
 
 // List of Asana APIs
 
@@ -13,6 +14,11 @@ router.post('/v1/users', UserHandler.create);
 router.post('/v1/projects', ProjectHandler.create);
 router.put('/v1/projects/:id', ProjectHandler.update);
 router.delete('/v1/projects/:id', ProjectHandler.delete);
+
+// Teams
+router.post('/v1/teams', TeamHandler.create);
+router.post('/v1/team-groups', TeamHandler.assign);
+router.post('/v1/team-projects', TeamHandler.assign_project);
 
 // Health check server
 router.get('/', (req, res) => {
