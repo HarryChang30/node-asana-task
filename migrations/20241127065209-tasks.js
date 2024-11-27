@@ -18,7 +18,7 @@ module.exports = {
         },
         onDelete: 'CASCADE'
       },
-      due_date: Sequelize.TIME,
+      due_date: Sequelize.DATE,
       title: Sequelize.STRING,
       description: Sequelize.STRING,
       priority: Sequelize.ENUM({
@@ -27,8 +27,8 @@ module.exports = {
       status: Sequelize.ENUM({
         values: ['TO-DO', 'PROGRESS', 'DONE']
       }),
-      created_at: Sequelize.TIME,
-      updated_at: Sequelize.TIME,
+      created_at: Sequelize.DATE,
+      updated_at: Sequelize.DATE,
     });
   },
 

@@ -12,6 +12,12 @@ const Users = attributes({
   name: {
     type: String,
     required: true,
+  },
+  created_at: {
+    type: Date,
+  },
+  updated_at: {
+    type: Date,
   }
 })(class Users{});
 

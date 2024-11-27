@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-// List of Asana tasks APIs
+const UserHandler = require('src/interfaces/http/Users');
 
+// List of Asana APIs
+
+// Users
+router.post('/v1/users', UserHandler.create);
 
 // Health check server
 router.get('/', (req, res) => {

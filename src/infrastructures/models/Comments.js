@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('comments', {
     id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
     },
     task_id: {

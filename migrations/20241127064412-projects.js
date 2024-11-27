@@ -10,8 +10,8 @@ module.exports = {
         autoIncrement: true,
       },
       name: Sequelize.DataTypes.STRING,
-      created_at: Sequelize.DataTypes.TIME,
-      updated_at: Sequelize.DataTypes.TIME,
+      created_at: Sequelize.DataTypes.DATE,
+      updated_at: Sequelize.DataTypes.DATE,
     });
   },
 

@@ -6,7 +6,15 @@ const DB_NAME = process.env.DB_NAME || 'asana';
 const DB_USER = process.env.DB_USER || 'postgres';
 const DB_PASSWORD = process.env.DB_PASSWORD || 'postgres';
 
-let models = [];
+let models = [
+  require('./Users'),
+  require('./Projects'),
+  require('./Tasks'),
+  require('./Comments'),
+  require('./Teams'),
+  require('./TeamGroups'),
+  require('./TeamProjects'),
+];
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   host: process.env.DB_HOST || 'localhost',

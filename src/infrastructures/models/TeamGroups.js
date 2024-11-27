@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('team_groups', {
     id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
     },
     team_id: {

@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('users', {
     id: {
       type: DataTypes.UUID,
+      primaryKey: true,
       allowNull: false,
     },
     username: {
@@ -13,5 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
+  }, {
+    underscored: true,
   });
 };
