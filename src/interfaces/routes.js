@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Health check server
 router.get('/', (req, res) => {
-    return res.status(200).json({ message: "Server is healthy" });
-})
+  return res.status(200).json({ message: 'Server is healthy' });
+});
 
 module.exports = router;

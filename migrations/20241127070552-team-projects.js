@@ -28,10 +28,10 @@ module.exports = {
       },
       created_at: Sequelize.TIME,
       updated_at: Sequelize.TIME,
-    })
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface) {
     queryInterface.dropTable('team_projects');
   }
 };

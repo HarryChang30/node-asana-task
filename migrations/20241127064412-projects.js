@@ -12,10 +12,10 @@ module.exports = {
       name: Sequelize.DataTypes.STRING,
       created_at: Sequelize.DataTypes.TIME,
       updated_at: Sequelize.DataTypes.TIME,
-    })
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface) {
     queryInterface.dropTable('projects');
   }
 };
