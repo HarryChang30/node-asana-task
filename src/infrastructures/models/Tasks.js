@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
     },
     project_id: {
@@ -32,5 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         values: ['TO-DO', 'PROGRESS', 'DONE']
       })
     }
+  }, {
+    underscored: true,
   });
 };
