@@ -23,19 +23,27 @@ module.exports = {
     // If result response is not 1 means 
     // There are some of the failed update
     if (result != 1) {
-      return res.status(500).json({message: 'update failed'});
+      return res.status(500).json({result: {
+        message: 'update failed'
+      }});
     }
 
-    return res.status(200).json({message: 'updated success'});
+    return res.status(200).json({result: {
+      message: 'update success'
+    }});
   },
   delete: async(req, res) => {
     const id = req.params.id;
 
     const result = await Projects.delete(id);
     if (result != 1) {
-      return res.status(500).json({message: 'delete failed'});
+      return res.status(500).json({result: {
+        message: 'delete failed'
+      }});
     }
 
-    return res.status(200).json({message: 'delete success'});
+    return res.status(200).json({result: {
+      message: 'delete success'
+    }});
   }
 };
