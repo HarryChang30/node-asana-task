@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Nodejs Asana task assignment",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "dev": "cross-env NODE_PATH=. NODE_ENV=development nodemon src/index.js",
     "lint": "eslint --fix ***/**/*.js",
@@ -23,9 +24,11 @@
   "author": "Harry Chang",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^2.5.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "pg": "^8.13.1",
     "sequelize": "^6.37.5",
     "structure": "^2.0.1"
   },
