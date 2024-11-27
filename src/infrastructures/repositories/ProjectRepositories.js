@@ -19,7 +19,10 @@ const ProjectRepositories = {
     }
 
     return db.projects.update(data, { where: { id: data.id }});
-  }
+  },
+  delete: (id) => {
+    return db.projects.destroy({where : { id: id }});
+  },
 };
 
 module.exports = ProjectRepositories;

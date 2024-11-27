@@ -12,6 +12,7 @@ router.post('/v1/users', UserHandler.create);
 // Projects
 router.post('/v1/projects', ProjectHandler.create);
 router.put('/v1/projects/:id', ProjectHandler.update);
+router.delete('/v1/projects/:id', ProjectHandler.delete);
 
 // Health check server
 router.get('/', (req, res) => {

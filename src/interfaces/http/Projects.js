@@ -27,5 +27,15 @@ module.exports = {
     }
 
     return res.status(200).json({message: 'updated success'});
+  },
+  delete: async(req, res) => {
+    const id = req.params.id;
+
+    const result = await Projects.delete(id);
+    if (result != 1) {
+      return res.status(500).json({message: 'delete failed'});
+    }
+
+    return res.status(200).json({message: 'delete success'});
   }
 };

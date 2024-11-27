@@ -8,5 +8,8 @@ module.exports = {
   },
   update: (project) => {
     return ProjectRepo.update(project);
+  },
+  delete: (id) => {
+    return ProjectRepo.delete(id);
   }
 };
