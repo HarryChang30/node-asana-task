@@ -11,5 +11,8 @@ module.exports = {
   },
   getById: (id) => {
     return TaskRepo.getById(id);
+  },
+  getAllTasksByProjectId: (project_id) => {
+    return TaskRepo.getAllTasksByProjectId(project_id);
   }
 };

@@ -62,5 +62,36 @@ module.exports = {
         ...task
       }
     });
+  },
+  getAllTasksByProjectId: async(req, res) => {
+    const project_id = req.params.project_id;
+    const result = await Tasks.getAllTasksByProjectId(project_id);
+    const tasks = [];
+
+    if (!result) {
+      return res.status(500).json({
+        result: {
+          message: 'internal server error'
+        }
+      }); 
+    }
+
+    for (let i = 0; i < result.length; i++) {
+      const task = {};
+      const item = result[i].dataValues;
+      task.id = item.id;
+      task.project_id = item.project_id;
+      task.due_date = item.due_date;
+      task.title = item.title;
+      task.description = item.description;
+      task.priority = item.priority;
+      task.status = item.status;
+      task.created_at = item.createdAt;
+      task.updated_at = item.updatedAt;
+
+      tasks.push(task);
+    }
+
+    return res.status(200).json({ result: { tasks: tasks }});
   }
 };

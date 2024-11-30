@@ -26,9 +26,11 @@ router.post('/v1/team-projects', TeamHandler.assign_project);
 router.post('/v1/tasks', TaskHandler.create);
 router.put('/v1/tasks/:id', TaskHandler.update);
 router.get('/v1/tasks/:id', TaskHandler.getById);
+router.get('/v1/tasks/projects/:project_id', TaskHandler.getAllTasksByProjectId);
 
 // Comments
 router.post('/v1/comments', CommentHandler.create);
+router.get('/v1/comments/tasks/:task_id', CommentHandler.getCommentsByTaskId);
 
 // Health check server
 router.get('/', (req, res) => {

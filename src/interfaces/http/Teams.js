@@ -7,6 +7,10 @@ module.exports = {
     const data = req.body;
     const result = await Teams.create(data);
     const teams = {};
+
+    if (!result) {
+      return res.status(500).json({ result: { message: 'create teams failed'}});
+    }
             
     teams.id = result.id;
     teams.name = result.name;
@@ -16,6 +20,10 @@ module.exports = {
   assign: async(req, res) => {
     const data = req.body;
     const result = await Teams.assign(data);
+    
+    if (!result) {
+      return res.status(500).json({result: { message: 'assign team to groups failed' }});
+    }
 
     const team_groups = {};
     team_groups.id = result.id;
@@ -28,6 +36,10 @@ module.exports = {
   assign_project: async(req, res) => {
     const data = req.body;
     const result = await Teams.assign_project(data);
+
+    if (!result) {
+      return res.status(500).json({result: {message: 'assign team to projects failed'}});
+    }
 
     const team_projects = {};
     team_projects.id = result.id;

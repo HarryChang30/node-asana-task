@@ -22,7 +22,10 @@ const TaskRepositories = {
   },
   getById: (id) => {
     return db.tasks.findOne({ where: { id : id }});
-  }
+  },
+  getAllTasksByProjectId: (project_id) => {
+    return db.tasks.findAll({ where: { project_id: project_id }});
+  },
 };
 
 

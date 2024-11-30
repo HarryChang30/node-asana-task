@@ -12,6 +12,9 @@ const CommentRepositories = {
     }
 
     return db.comments.create(data);
+  },
+  getCommentsByTaskId: (task_id) => {
+    return db.comments.findAll({ where: { task_id: task_id }});
   }
 };
 
