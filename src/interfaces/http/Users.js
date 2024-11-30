@@ -8,6 +8,10 @@ module.exports = {
     const result = await CreateUsers.create(data);
     const users = {};
 
+    if (!result) {
+      return res.status(500).json({ result: { message: 'create user failed'}});
+    }
+
     // TO-DO need to be refactored 
     // Utilize build the function for deserialize the data
     users.id = result.id;

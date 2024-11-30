@@ -7,6 +7,10 @@ module.exports = {
     const data = req.body;
     const result = await Projects.create(data);
     const projects = {};
+
+    if (!result) {
+      return res.status(500).json({ result: { message: 'create project failed' }});
+    }
         
     projects.id = result.id;
     projects.name = result.name;
