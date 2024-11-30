@@ -1,10 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('comments', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-    },
     task_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -15,5 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     attachment_url: {
       type: DataTypes.STRING,
     },
+  }, {
+    underscored: true
   });
 };

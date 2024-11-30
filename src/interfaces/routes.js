@@ -4,6 +4,8 @@ const router = express.Router();
 const UserHandler = require('src/interfaces/http/Users');
 const ProjectHandler = require('src/interfaces/http/Projects');
 const TeamHandler = require('src/interfaces/http/Teams');
+const TaskHandler = require('src/interfaces/http/Tasks');
+const CommentHandler = require('src/interfaces/http/Comments');
 
 // List of Asana APIs
 
@@ -19,6 +21,14 @@ router.delete('/v1/projects/:id', ProjectHandler.delete);
 router.post('/v1/teams', TeamHandler.create);
 router.post('/v1/team-groups', TeamHandler.assign);
 router.post('/v1/team-projects', TeamHandler.assign_project);
+
+// Tasks
+router.post('/v1/tasks', TaskHandler.create);
+router.put('/v1/tasks/:id', TaskHandler.update);
+router.get('/v1/tasks/:id', TaskHandler.getById);
+
+// Comments
+router.post('/v1/comments', CommentHandler.create);
 
 // Health check server
 router.get('/', (req, res) => {

@@ -3,24 +3,24 @@ const { attributes } = require('structure');
 const Tasks = attributes({
   project_id: {
     type: Number,
-    required: true,
   },
   user_id: {
     type: String,
-    required: true,
   },
   due_date: {
     type: Date,
   },
   title: {
     type: String,
+    required: true,
   },
   description: {
     type: String,
+    required: true,
   },
   priority: {
     type: String,
-    equal: ['High', 'Medium', 'Low'],
+    equal: ['HIGH', 'MEDIUM', 'LOW'],
   },
   status: {
     type: String,

@@ -10,6 +10,7 @@ const Comments = attributes({
   },
   attachment_url: {
     type: String,
+    empty: true,
   }
 })(class Comments{});
 
