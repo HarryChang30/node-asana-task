@@ -1,12 +1,18 @@
 'use strict';
 
 const Comment = require('src/application/Comments/Comments');
+const Task = require('src/application/Tasks/Tasks');
 
 module.exports = {
   create: async(req, res) => {
     const data = req.body;
     const result = await Comment.create(data);
     const comment = {};
+
+    const task = await Task.getById(data.task_id);
+    if (task.project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
 
     if (!result) {
       return res.status(500).json({ result: { message: 'create comment failed' }});
@@ -24,6 +30,11 @@ module.exports = {
     const task_id = req.params.task_id;
     const result = await Comment.getCommentsByTaskId(task_id);
     const comments = [];
+
+    const task = await Task.getById(task_id);
+    if (task.project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
 
     if (!result) {
       return res.status(500).json({ result: { message: 'get comment by id failed' }});

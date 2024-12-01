@@ -2,6 +2,9 @@ const db = require('src/infrastructures/models/db');
 const Projects = require('src/domain/Projects');
 
 const ProjectRepositories = {
+  get: (project_id) => {
+    return db.projects.findOne({ where: { id: project_id }});
+  },
   create: (data) => {
     const { errors } = new Projects(data).validate();
 

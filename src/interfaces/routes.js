@@ -7,30 +7,37 @@ const TeamHandler = require('src/interfaces/http/Teams');
 const TaskHandler = require('src/interfaces/http/Tasks');
 const CommentHandler = require('src/interfaces/http/Comments');
 
+// Validate Middleware
+const ValidateToken = require('src/interfaces/middleware/ValidateToken');
+
 // List of Asana APIs
 
 // Users
 router.post('/v1/users', UserHandler.create);
 
+// Login
+router.post('/v1/login', UserHandler.login);
+
 // Projects
-router.post('/v1/projects', ProjectHandler.create);
-router.put('/v1/projects/:id', ProjectHandler.update);
-router.delete('/v1/projects/:id', ProjectHandler.delete);
+router.get('/v1/projects/:id', ValidateToken.validate, ProjectHandler.get);
+router.post('/v1/projects', ValidateToken.validate, ProjectHandler.create);
+router.put('/v1/projects/:id', ValidateToken.validate, ProjectHandler.update);
+router.delete('/v1/projects/:id', ValidateToken.validate, ProjectHandler.delete);
 
 // Teams
-router.post('/v1/teams', TeamHandler.create);
-router.post('/v1/team-groups', TeamHandler.assign);
-router.post('/v1/team-projects', TeamHandler.assign_project);
+router.post('/v1/teams', ValidateToken.validate, TeamHandler.create);
+router.post('/v1/team-groups', ValidateToken.validate, TeamHandler.assign);
+router.post('/v1/team-projects', ValidateToken.validate, TeamHandler.assign_project);
 
 // Tasks
-router.post('/v1/tasks', TaskHandler.create);
-router.put('/v1/tasks/:id', TaskHandler.update);
-router.get('/v1/tasks/:id', TaskHandler.getById);
-router.get('/v1/tasks/projects/:project_id', TaskHandler.getAllTasksByProjectId);
+router.post('/v1/tasks', ValidateToken.validate, TaskHandler.create);
+router.put('/v1/tasks/:id', ValidateToken.validate, TaskHandler.update);
+router.get('/v1/tasks/:id', ValidateToken.validate, TaskHandler.getById);
+router.get('/v1/tasks/projects/:project_id', ValidateToken.validate, TaskHandler.getAllTasksByProjectId);
 
 // Comments
-router.post('/v1/comments', CommentHandler.create);
-router.get('/v1/comments/tasks/:task_id', CommentHandler.getCommentsByTaskId);
+router.post('/v1/comments', ValidateToken.validate, CommentHandler.create);
+router.get('/v1/comments/tasks/:task_id', ValidateToken.validate, CommentHandler.getCommentsByTaskId);
 
 // Health check server
 router.get('/', (req, res) => {

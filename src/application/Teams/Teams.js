@@ -10,7 +10,12 @@ module.exports = {
     return TeamsRepo.assign(data);
   },
   assign_project: (data) => {
-    console.log('data: ', data);
     return TeamsRepo.assign_project(data);
+  },
+  get_groupTeam_by_user_id: (user_id) => {
+    return TeamsRepo.get_groupTeam_by_user_id(user_id);
+  },
+  get_projectTeam_by_team_id: (team_id) => {
+    return TeamsRepo.get_projectTeam_by_team_id(team_id);
   }
 };

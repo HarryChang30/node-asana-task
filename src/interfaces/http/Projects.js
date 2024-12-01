@@ -3,6 +3,24 @@
 const Projects = require('src/application/Projects/Projects');
 
 module.exports = {
+  get: async(req, res) => {
+    const id = req.params.id;
+    const result = await Projects.get(id);
+    const projects = {};
+
+    if (req.project_id != id) {
+      return res.status(403).json({ result: { message: 'project is not allowed to access' }});
+    }
+
+    if (!result) {
+      return res.status(500).json({ result: { message: 'get project failed' }});
+    }
+
+    projects.id = result.id;
+    projects.name = result.name;
+
+    return res.status(200).json({ result: projects });
+  },
   create: async(req, res) => {
     const data = req.body;
     const result = await Projects.create(data);

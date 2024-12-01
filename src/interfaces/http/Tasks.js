@@ -8,6 +8,10 @@ module.exports = {
     const result = await Tasks.create(data);
     const task = {};
 
+    if (data.project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
+
     if (!result) {
       return res.status(500).json({ result: { message: 'create tasks failed' }});
     }
@@ -20,6 +24,11 @@ module.exports = {
     const data = req.body;
     const id = req.params.id;
     data.id = id;
+
+    const task = await Tasks.getById(id);
+    if (task.project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
 
     const result = await Tasks.update(data);
 
@@ -41,6 +50,10 @@ module.exports = {
     const id = req.params.id;
     const result = await Tasks.getById(id);
     const task = {};
+
+    if (result.project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
 
     if (!result) {
       return res.status(500).json({
@@ -67,6 +80,10 @@ module.exports = {
     const project_id = req.params.project_id;
     const result = await Tasks.getAllTasksByProjectId(project_id);
     const tasks = [];
+
+    if (project_id != req.project_id) {
+      return res.status(403).json({ result: { message: 'not having access on this project'}});
+    }
 
     if (!result) {
       return res.status(500).json({

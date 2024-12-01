@@ -15,6 +15,12 @@ const UserRepositories = {
 
     data.id = uuidv4();
     return db.users.create(data);
+  },
+  login: (data) => {
+    const username = data.username;
+    const password = data.password;
+
+    return db.users.findOne({ where: { username: username, password: password }});
   }
 };
 

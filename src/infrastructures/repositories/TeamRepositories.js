@@ -30,6 +30,12 @@ const TeamRepositories = {
     }
 
     return db.team_projects.create(data);
+  },
+  get_groupTeam_by_user_id: (user_id) => {
+    return db.team_groups.findOne({ where: { user_id: user_id }});
+  },
+  get_projectTeam_by_team_id: (team_id) => {
+    return db.team_projects.findOne({ where: { team_id: team_id }});
   }
 };
 
