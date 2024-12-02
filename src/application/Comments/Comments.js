@@ -6,7 +6,12 @@ module.exports = {
   create: (comment) => {
     return CommentRepo.create(comment);
   },
-  getCommentsByTaskId: (task_id) => {
-    return CommentRepo.getCommentsByTaskId(task_id);
+  getCommentsByTaskId: async (task_id) => {
+    try {
+      const data = await CommentRepo.getCommentsByTaskId(task_id);
+      return data;
+    } catch (error) {
+      throw new Error('SequelizeDatabaseError');
+    }
   }
 };
