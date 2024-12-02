@@ -1,11 +1,30 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
+
 
 const UserHandler = require('src/interfaces/http/Users');
 const ProjectHandler = require('src/interfaces/http/Projects');
 const TeamHandler = require('src/interfaces/http/Teams');
 const TaskHandler = require('src/interfaces/http/Tasks');
 const CommentHandler = require('src/interfaces/http/Comments');
+
+// Upload
+const UploadHandler = require('src/interfaces/http/Uploads');
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads');
+  },
+  filename: (req, file, cb) => {
+    const fileStore = file.fieldname + '-' + Date.now() + '-' + file.originalname;
+    req.store_path = 'public/uploads/' + fileStore;
+    cb(null, fileStore);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Validate Middleware
 const ValidateToken = require('src/interfaces/middleware/ValidateToken');
@@ -38,6 +57,9 @@ router.get('/v1/tasks/projects/:project_id', ValidateToken.validate, TaskHandler
 // Comments
 router.post('/v1/comments', ValidateToken.validate, CommentHandler.create);
 router.get('/v1/comments/tasks/:task_id', ValidateToken.validate, CommentHandler.getCommentsByTaskId);
+
+// Upload Attachment
+router.post('/v1/upload/attachment', ValidateToken.validate, upload.single('file'), UploadHandler.upload);
 
 // Health check server
 router.get('/', (req, res) => {
